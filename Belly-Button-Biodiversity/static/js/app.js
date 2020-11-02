@@ -31,4 +31,3 @@ d3.json("data/samples.json").then((importedData) => {
 
 });
 
-test test 
