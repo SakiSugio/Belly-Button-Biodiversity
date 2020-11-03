@@ -9,30 +9,57 @@ d3.json("data/samples.json").then((importedData) => {
     console.log(importedData);
     var data = importedData.names;
     console.log(data)
-    // Sort the data array using the sample_values
-    // data.sort(function(a,b) {
-    //     return (b.sample_values) - (a.sample_values);
-    // });
-
-    //  // Slice the first 10 objects for plotting
-    // data = data.slice(0, 10);
-
-    // // Reverse the array due to Plotly's defaults
-    // data = data.reverse();
-
-    // // Trace1 for the sample_values data
-    // var trace1 = {
-    //     x: data.map(row => row.sample_values),
-    //     y: data.map(row => row.id),
-    //     text: data.map(row => row.id),
-    //     type: "bar",
-    // };
-
-    // // data
-    // var chartData = [trace1];
-
-    // // Render the plot to the div tag with id "bar"
-    // Plotly.newPlot("plot", chartData);
-
+    importedData.names.forEach ((id) => {
+        selData.append("option").text(id).property("value")
+    })
+    optionChanged(importedData.names[0])
 })};
+
+creatNames()
+
+function demographic (userId) {
+    d3.json("data/samples.json").then((demoData) => {
+        console.log(demoData.metadata)
+        var filterData = demoData.metadata.filter(meta => meta.id == userId)
+        var firstDemo = filterData[0]
+        console.log(firstDemo)
+        var metadataBody = d3.select("#sample-metadata")
+        metadataBody.html("")
+        Object.entries(firstDemo).forEach (([key, value]) => {
+            var pragraph = metadataBody.append("p")
+            pragraph.text(`${key} : ${value}`)
+        })
+    })
+}
+function optionChanged(userId) {
+    demographic(userId)
+    barChart(userId)
+}
+
+function barChart (userId) {
+    d3.json("data/samples.json").then((samplesData) => {
+        console.log(samplesData.samples)
+        var filterData = samplesData.samples.filter(samples => samples.id == userId)
+        var firstSample = filterData[0]
+        console.log(firstSample)
+    var xaxis = firstSample.sample_values.slice(0,10).reverse()
+    var yaxis = firstSample.otu_ids.map(row => `OTUid ${row}`).slice(0,10).reverse()
+    var text = firstSample.otu_labels.slice(0,10).reverse()
+
+    // Trace1 for the sample_values data
+    var trace1 = {
+        x: xaxis,
+        y: yaxis,
+        text: text,
+        type: "bar", 
+        orientation: "h"
+    };
+
+    // data
+    var chartData = [trace1];
+
+    // Render the plot to the div tag with id "bar"
+    Plotly.newPlot("bar", chartData);
+})};
+
 
