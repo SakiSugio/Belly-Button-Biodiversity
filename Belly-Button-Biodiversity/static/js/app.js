@@ -34,6 +34,8 @@ function demographic (userId) {
 function optionChanged(userId) {
     demographic(userId)
     barChart(userId)
+    babbleChart(userId)
+
 }
 
 function barChart (userId) {
@@ -42,15 +44,15 @@ function barChart (userId) {
         var filterData = samplesData.samples.filter(samples => samples.id == userId)
         var firstSample = filterData[0]
         console.log(firstSample)
-    var sampleValues = firstSample.sample_values.slice(0,10).reverse()
-    var otuIds = firstSample.otu_ids.map(row => `OTU ID ${row}`).slice(0,10).reverse()
-    var otuLabels = firstSample.otu_labels.slice(0,10).reverse()
+    var xaxis = firstSample.sample_values.slice(0,10).reverse()
+    var yaxis = firstSample.otu_ids.map(row => `OTU ID ${row}`).slice(0,10).reverse()
+    var text = firstSample.otu_labels.slice(0,10).reverse()
 
     // Trace1 for the sample_values data
     var trace1 = {
-        x: sampleValues,
-        y: otuIds,
-        text: otuLabels,
+        x: xaxis,
+        y: yaxis,
+        text: text,
         type: "bar", 
         orientation: "h"
     };
@@ -61,7 +63,19 @@ function barChart (userId) {
     // Render the plot to the div tag with id "bar"
     Plotly.newPlot("bar", chartData);
 
+})};
 
+
+function babbleChart (userId) {
+    d3.json("data/samples.json").then((samplesData) => {
+        console.log(samplesData.samples)
+        var filterData = samplesData.samples.filter(samples => samples.id == userId)
+        var firstSample = filterData[0]
+        console.log(firstSample)
+    var sampleValues = firstSample.sample_values
+    var otuIds = firstSample.otu_ids
+    var otuLabels = firstSample.otu_labels
+    
     // Babble chart
     var trace2 = {
         x: otuIds,
@@ -78,6 +92,6 @@ function barChart (userId) {
 
     // Render the plot to the div tag with id "bubble"
     Plotly.newPlot("bubble", bubbleData);
+
 })};
-
-
+    
