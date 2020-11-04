@@ -83,7 +83,7 @@ function babbleChart (userId) {
         text: otuLabels,
         mode: "markers",
         marker: {
-            color: "rgb(otuIds)",
+            color: otuIds,
             size: sampleValues
         }
     };
