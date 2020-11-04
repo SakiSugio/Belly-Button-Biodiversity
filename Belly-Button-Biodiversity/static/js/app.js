@@ -34,7 +34,6 @@ function demographic (userId) {
 function optionChanged(userId) {
     demographic(userId)
     barChart(userId)
-    bubbleData(userId)
 }
 
 function barChart (userId) {
@@ -68,7 +67,7 @@ function barChart (userId) {
         x: otuIds,
         y: sampleValues,
         text: otuLabels,
-        mode: "makers",
+        mode: "markers",
         marker: {
             color: otuIds,
             size: sampleValues
@@ -77,6 +76,7 @@ function barChart (userId) {
 
     var bubbleData = [trace2];
 
+    // Render the plot to the div tag with id "bubble"
     Plotly.newPlot("bubble", bubbleData);
 })};
 
