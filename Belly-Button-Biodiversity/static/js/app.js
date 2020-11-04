@@ -69,7 +69,7 @@ function barChart (userId) {
         text: otuLabels,
         mode: "markers",
         marker: {
-            color: otuIds,
+            color: "rgb(otuIds)",
             size: sampleValues
         }
     };
