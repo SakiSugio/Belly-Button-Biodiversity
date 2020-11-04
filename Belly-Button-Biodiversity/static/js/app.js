@@ -90,8 +90,12 @@ function babbleChart (userId) {
 
     var bubbleData = [trace2];
 
+    var layout = {
+        x: "OTU ID",
+      };
+
     // Render the plot to the div tag with id "bubble"
-    Plotly.newPlot("bubble", bubbleData);
+    Plotly.newPlot("bubble", bubbleData, layout);
 
 })};
     
