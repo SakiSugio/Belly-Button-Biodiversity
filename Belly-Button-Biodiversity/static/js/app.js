@@ -91,7 +91,9 @@ function babbleChart (userId) {
     var bubbleData = [trace2];
 
     var layout = {
-        x: "OTU ID",
+        xaxis: {
+            title: "OTU ID"    
+        },
       };
 
     // Render the plot to the div tag with id "bubble"
