@@ -11,7 +11,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 ![alt text](https://github.com/SakiSugio/Plotly-challenge/blob/main/images/plotly_hw_1.png)
 
 2. Create a bubble chart that displays each sample.
-
+![alt text](https://github.com/SakiSugio/Plotly-challenge/blob/main/images/plotly_hw_2.png)
 
 
 [Belly Button Biodiversity dataset]: http://robdunnlab.com/projects/belly-button-biodiversity/
