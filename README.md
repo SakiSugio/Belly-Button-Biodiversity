@@ -9,7 +9,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 ## Steps
 1. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
 * Use the JavaScript filter() method
-* USe slice() to select the top 10 OTUs
+* Use slice() to select the top 10 OTUs
 * Manipulate charts through dropdown events 
 * Use map() to create Plotly chart
 
